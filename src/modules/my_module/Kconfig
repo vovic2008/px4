@@ -1,0 +1,5 @@
+menuconfig MODULES_MY_MODULE
+	bool "my_module"
+	default n
+	---help---
+		Enable My app

@@ -196,7 +196,9 @@ void FlightModeManager::start_flight_task()
 		case 3:
 			error = switchTask(FlightTaskIndex::ManualPositionSmoothVel);
 			break;
-
+		// case 5: // Add case for new task: MyTask
+		// 	error = switchTask(FlightTaskIndex::MyTask);
+		// 	break;
 		case 4:
 		default:
 			if (_param_mpc_pos_mode.get() != 4) {
@@ -213,15 +215,21 @@ void FlightModeManager::start_flight_task()
 	}
 
 	// manual altitude control
-	if (_vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_ALTCTL || task_failure) {
+	if (_vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_ALTCTL || _vehicle_status_sub.get().nav_state == vehicle_status_s::NAVIGATION_STATE_OFFBOARD || task_failure) {
 		should_disable_task = false;
 		FlightTaskError error = FlightTaskError::NoError;
-
+                // PX4_INFO("_param_mpc_pos_mode: %d", _param_mpc_pos_mode.get());
 		switch (_param_mpc_pos_mode.get()) {
 		case 0:
 			error = switchTask(FlightTaskIndex::ManualAltitude);
 			break;
 
+                case 4: // Add case for new task: MyTask
+			error = switchTask(FlightTaskIndex::MyTask);
+			break;
+                case 5: // Add case for new task: MyTask
+			error = switchTask(FlightTaskIndex::MyTask);
+			break;
 		case 3:
 		default:
 			error = switchTask(FlightTaskIndex::ManualAltitudeSmoothVel);

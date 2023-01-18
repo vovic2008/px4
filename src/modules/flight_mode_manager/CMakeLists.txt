@@ -54,6 +54,7 @@ if(NOT px4_constrained_flash_build)
 	list(APPEND flight_tasks_all
 		AutoFollowTarget
 		Orbit
+		MyTask
 	)
 endif()
 

@@ -172,6 +172,7 @@ set(msg_files
 	SensorSelection.msg
 	SensorsStatus.msg
 	SensorsStatusImu.msg
+	SentComeHome.msg
 	SystemPower.msg
 	TakeoffStatus.msg
 	TaskStackInfo.msg

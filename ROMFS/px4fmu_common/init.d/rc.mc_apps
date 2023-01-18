@@ -74,6 +74,7 @@ fi
 mc_hover_thrust_estimator start
 flight_mode_manager start
 mc_pos_control start
+my_module start
 
 #
 # Start Multicopter Land Detector.
